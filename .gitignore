@@ -1,10 +1,10 @@
-xihaxiongmao/Library/
-xihaxiongmao/.idea/
-xihaxiongmao/.vs/
-xihaxiongmao/.vscode/
-xihaxiongmao/Logs/
-xihaxiongmao/obj/
-xihaxiongmao/Temp/
+AirCombatGame/Library/
+AirCombatGame/.idea/
+AirCombatGame/.vs/
+AirCombatGame/.vscode/
+AirCombatGame/Logs/
+AirCombatGame/obj/
+AirCombatGame/Temp/
 *.svd
 *.userprefs
 *.csproj
