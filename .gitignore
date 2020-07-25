@@ -1,10 +1,10 @@
-AirCombatGame/Library/
-AirCombatGame/.idea/
-AirCombatGame/.vs/
-AirCombatGame/.vscode/
-AirCombatGame/Logs/
-AirCombatGame/obj/
-AirCombatGame/Temp/
+Library/
+.idea/
+.vs/
+.vscode/
+Logs/
+obj/
+Temp/
 *.svd
 *.userprefs
 *.csproj
