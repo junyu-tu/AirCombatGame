@@ -1,0 +1,17 @@
+xihaxiongmao/Library/
+xihaxiongmao/.idea/
+xihaxiongmao/.vs/
+xihaxiongmao/.vscode/
+xihaxiongmao/Logs/
+xihaxiongmao/obj/
+xihaxiongmao/Temp/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+
