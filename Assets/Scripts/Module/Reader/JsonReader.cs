@@ -7,13 +7,14 @@ using UnityEngine;
 
 public class JsonReader : IReader
 {
-    private JsonData data;
-    private JsonData tempData;
+    private JsonData _data;
+    //缓存当前获取的JsonData
+    private JsonData _tempData;
 
     public IReader this[string key]
     {
         get {
-            tempData = tempData[key];
+            _tempData = _tempData[key];
             return this;
         }
     }
@@ -22,11 +23,16 @@ public class JsonReader : IReader
     {
         get
         {
-            tempData = tempData[key];
+            _tempData = _tempData[key];
             return this;
         }
     }
 
+    /// <summary>
+    /// 当调用这个方法 也就表示数据获取到“底”了，就得重置数据了
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="callBack"></param>
     public void Get<T>(Action<T> callBack)
     {
         if (callBack == null) {
@@ -35,7 +41,7 @@ public class JsonReader : IReader
             return;
         }
 
-        T dataX = GetValue<T>(tempData);
+        T dataX = GetValue<T>(_tempData);
         callBack(dataX);
         ResetData();
     }
@@ -44,7 +50,7 @@ public class JsonReader : IReader
     /// 数据重置
     /// </summary>
     private void ResetData() {
-        tempData = data;
+        _tempData = _data;
     }
 
     /// <summary>
@@ -55,19 +61,21 @@ public class JsonReader : IReader
     /// <returns></returns>
     private T GetValue<T>(JsonData data) {
         //涉及到泛型类型的转换  需要使用转换器
-       var converter =  TypeDescriptor.GetConverter(typeof(T));//这样会生成一个T类型的转换器
+        //这样会生成一个T类型的转换器
+        var converter =  TypeDescriptor.GetConverter(typeof(T));
         return (T)converter.ConvertTo(data.ToJson(),typeof(T));
     }
 
     public void SetData(object data)
     {
+        //确保data数据是string类型
         if (data is string)
         {
-            data = JsonMapper.ToObject((string)data);
+            _data = JsonMapper.ToObject((string)data);
             ResetData();
         }
         else {
-            Debug.LogError("当前传入数据类型错误，当前类智能解析Json");
+            Debug.LogError("当前传入数据类型错误，当前类只能解析Json");
         }
        
     }
