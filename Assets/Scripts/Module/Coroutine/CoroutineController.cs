@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 控制流程的接口
+/// </summary>
 public class CoroutineController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public enum CoroutineState{ 
+        WAITTING,
+        RUNNING,
+        PAUSED,
+        STOP
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public CoroutineState State { get; set; }
+
+    public IEnumerator Body(IEnumerator routine) {
+
+        yield return null; //等待一帧  返回某个值
     }
+
 }
